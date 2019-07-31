@@ -1,0 +1,44 @@
+clc
+clear
+xdel(winsid())
+
+b=wavread('C:\Users\Moin\Desktop\Ricky\DCE_MINI_PROJECT\DCE_MINI_PROJECT\sample3.wav',[38051 66150]);
+playsnd(b,44100)
+a(1,:)=b(1,:);
+plot2d(a)
+
+A=87.6;
+N=1/A;
+P=(A/(1+log(A)));
+Q=(1/(1+log(A)));
+
+for i=1:length(a)
+    if -1<a(1,i) & a(1,i)<-N
+        v(1,i)=-Q*(1+log(A*abs(a(1,i))));
+    elseif -N<a(1,i) & a(1,i)<0
+        v(1,i)=-P.*abs(a(1,i));
+    elseif 0<a(1,i) & a(1,i)<N
+        v(1,i)=P.*abs(a(1,i));
+    elseif N<a(1,i) & a(1,i)<1
+        v(1,i)=Q*(1+log(A*abs(a(1,i))));
+    end
+end
+
+for i=1:length(v)
+    if -1<v(1,i) & v(1,i)<-N
+        x(1,i)=(exp(v(1,i)/Q)-1)/A;
+    elseif -N<v(1,i) & v(1,i)<0
+        x(1,i)=v(1,i)/P;
+    elseif 0<v(1,i) & v(1,i)<N
+        x(1,i)=v(1,i)/P;
+    elseif N<v(1,i) & v(1,i)<1
+        x(1,i)=(exp(v(1,i)/Q)-1)/A;
+    end
+end
+
+y(1,:)=x(1,:);
+y(2,:)=x(1,:);
+playsnd(y,44100)
+
+figure()
+plot2d(x)
