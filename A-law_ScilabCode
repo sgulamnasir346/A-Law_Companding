@@ -2,7 +2,7 @@ clc
 clear
 xdel(winsid())
 
-b=wavread('C:\Users\Moin\Desktop\Ricky\DCE_MINI_PROJECT\DCE_MINI_PROJECT\sample3.wav',[38051 66150]);
+b=wavread('C:\Users\Nasir\Desktop\Ricky\sample3.wav',[38051 66150]);
 playsnd(b,44100)
 a(1,:)=b(1,:);
 plot2d(a)
