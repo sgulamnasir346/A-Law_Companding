@@ -1,0 +1,2 @@
+# A-Law_Companding
+A-Law is an algorithm used for audio compression schemes that compress 16bit linear data down to 8 bits of logarithmic data. The encoding process breaks the linear pulse code modulated data into segments with each progressively higher segment doubling in size this ensures that the lower amplitudes signal (where most of the information in speech takes place) get the highest bit resolution while still allowing enough dynamic range to encode high amplitude signals.
